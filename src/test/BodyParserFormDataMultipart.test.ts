@@ -79,21 +79,6 @@ describe('SuGo Json Body Parser', () => {
     });
   });
 
-  it('should be compatible with NodeJS http server', async () => {
-    const server = http.createServer(async (req: IRequest, res: http.ServerResponse) => {
-      await parseFormDataMultipart(req, res);
-      req.should.have.property('fields');
-      req.should.have.property('fields');
-      res.writeHead(200, headers);
-      res.end();
-    });
-    const response = await supertest(server)
-      .post(PATH)
-      .set('Content-type', 'application/json')
-      .send({ foo: 'fighters' });
-    response.status.should.be.eql(200);
-  });
-
   it('should be compatible with SuGO Server', async () => {
     const server = createServer(HANDLER).useMiddleware(parseFormDataMultipart);
     const response = await supertest(server)
