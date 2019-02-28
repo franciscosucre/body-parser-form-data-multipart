@@ -36,7 +36,7 @@ export class SuGoFormDataMultipartBodyParser {
   public asMiddleware() {
     const form = this.form;
     return async (req: IRequest, res: ServerResponse, next?: () => any) => {
-      const contentType = req.headers['content-type'] as string;
+      const contentType = req.headers['content-type'] || '';
       const isFormData: boolean =
         contentType.toLowerCase().includes('www-form-urlencoded') || contentType.includes('form-data');
       if (!isFormData) {
