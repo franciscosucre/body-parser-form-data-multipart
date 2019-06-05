@@ -10,7 +10,7 @@ npm install --save @sugo/body-parser-form-data-multipart
 
 ## **SuGoFormDataMultipartBodyParser**
 
-Builds the middleware. Receives [formidable form options](https://github.com/felixge/node-formidable)
+- **getMiddleware(options):** Builds the middleware. Receives [formidable form options](https://github.com/felixge/node-formidable)
 
 ## **Example - Node Http Server**
 
@@ -34,3 +34,7 @@ const server = createServer((req: SuGoRequest, res: SuGoResponse) => {
   res.end(JSON.stringify(req.body ? req.body : {}));
 }).useMiddleware(getMiddleware());
 ```
+
+## Obtaining files
+
+The uploaded files will be in the **req.files** property and the form data in the **req.fields** property.
